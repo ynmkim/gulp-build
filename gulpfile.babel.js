@@ -5,6 +5,7 @@ import ws from "gulp-webserver";
 import image from "gulp-image";
 // import sass from "gulp-sass";
 const sass = require("gulp-sass")(require("node-sass"));
+import autoprefixer from "gulp-autoprefixer";
 
 sass.compiler = require("node-sass");
 
@@ -50,6 +51,12 @@ const styles = () =>
   gulp
     .src(routes.scss.src)
     .pipe(sass().on("error", sass.logError))
+    // .pipe(
+    //   autoprefixer({
+    //     browsers: ["last 2 versions"]
+    //   })
+    // )
+    .pipe(autoprefixer())
     .pipe(gulp.dest(routes.scss.dest));
 
 const prepare = gulp.series([clean]);
